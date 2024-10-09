@@ -148,17 +148,10 @@ function totalVideosDuration(channel) {
  ****************************************************************/
 function channelWithMostContent(channels) {
   // Your code here
-  let indexMostContent;
-  let mostContentSoFar = 0;
-
-  channels.forEach((channel, idx) => {
-    if (totalVideosDuration(channel) > mostContentSoFar) {
-      mostContentSoFar = totalVideosDuration(channel);
-      indexMostContent = idx;
-    }
-  });
-
-  return channels[indexMostContent];
+  // Sort by descending order, so the first ([0]) channel
+  return channels.sort(
+    (a, b) => totalVideosDuration(b) - totalVideosDuration(a)
+  )[0];
 }
 
 /**************************************************************
@@ -170,17 +163,8 @@ function channelWithMostContent(channels) {
  ****************************************************************/
 function longestChannelName(channels) {
   // Your code here
-  let indexLongestName;
-  let longestNameSoFarLength = 0;
-
-  channels.forEach((channel, idx) => {
-    if (channel.name.length > longestNameSoFarLength) {
-      longestNameSoFarLength = channel.name.length;
-      indexLongestName = idx;
-    }
-  });
-
-  return channels[indexLongestName];
+  // Same as above, first channel
+  return channels.sort((a, b) => b.name.length - a.name.length)[0];
 }
 
 // Check your answers by running this file and comparing what it logs
